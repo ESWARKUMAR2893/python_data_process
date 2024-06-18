@@ -1,0 +1,26 @@
+{
+    "databases": {
+        "postgres_db": {
+            "type": "postgres",
+            "user": "postgres",
+            "password": "password",
+            "host": "localhost",
+            "port": "5432",
+            "database": "newDB"
+        },
+        "oracle_db": {
+            "type": "oracle",
+            "user": "oracle_user",
+            "password": "oracle_password",
+            "host": "oracle_host",
+            "port": "oracle_port",
+            "service_name": "oracle_service_name"
+        },
+        "salesforce": {
+            "type": "salesforce",
+            "username": "salesforce_username",
+            "password": "salesforce_password",
+            "security_token": "salesforce_security_token"
+        }
+    }
+}
