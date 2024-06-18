@@ -1,0 +1,9 @@
+id,author,title,genre,price,publish_date
+bk101,"Gambardella, Matthew",XML Developer's Guide,Computer,44.95,2000-10-01
+bk102,"Ralls, Kim",Midnight Rain,Fantasy,5.95,2000-12-16
+bk103,"Corets, Eva",Maeve Ascendant,Fantasy,5.95,2000-11-17
+bk104,"Corets, Eva",Oberon's Legacy,Fantasy,5.95,2001-03-10
+bk105,"Corets, Eva",The Sundered Grail,Fantasy,5.95,2001-09-10
+bk106,"Randall, Cynthia",Lover Birds,Romance,4.95,2000-09-02
+bk107,"Thurman, Paula",Splish Splash,Romance,4.95,2000-11-02
+bk108,"Knorr, Stefan",Creepy Crawlies,Horror,4.95,2000-12-06

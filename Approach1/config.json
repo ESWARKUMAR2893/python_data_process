@@ -1,0 +1,16 @@
+{
+    "csv": {
+        "input_path": "input.csv",
+        "output_path": "output_csv.csv",
+        "delimiter": ","
+    },
+    "txt": {
+        "input_path": "input.txt",
+        "output_path": "output_txt.csv",
+        "delimiter": "\t"
+    },
+    "xml": {
+        "input_path": "input.xml",
+        "output_path": "output_xml.csv"
+    }
+}

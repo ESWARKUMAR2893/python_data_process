@@ -1,0 +1,6 @@
+id	name	age	date_of_joining	city
+1	John Doe	28	2020-01-15	New York
+2	Jane Smith	34	2018-03-22	Los Angeles
+3	Emily Jones	22	2021-06-12	Chicago
+4	Michael Brown	45	2015-09-30	Houston
+5	Jessica Davis	30	2019-11-05	Phoenix
