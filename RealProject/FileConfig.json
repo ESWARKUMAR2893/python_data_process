@@ -1,12 +1,12 @@
 {
-    "1": "file1.txt",
-    "2": "file2.csv",
-    "3": "file3.csv",
-    "4": "file4.txt",
-    "5": "file5.xml",
-    "6": "file6.csv",
-    "7": "file7.txt",
-    "8": "file8.csv",
-    "9": "file9.xml",
-    "10": "file10.json"
+    "1": {"file_name": "file1.txt", "delimiter": "\t"},
+    "2": {"file_name": "file2.csv", "delimiter": ","},
+    "3": {"file_name": "file3.csv", "delimiter": ","},
+    "4": {"file_name": "file4.txt", "delimiter": "\t"},
+    "5": {"file_name": "file5.xml", "delimiter": ""},
+    "6": {"file_name": "file6.csv", "delimiter": ","},
+    "7": {"file_name": "file7.txt", "delimiter": "\t"},
+    "8": {"file_name": "file8.csv", "delimiter": ","},
+    "9": {"file_name": "file9.xml", "delimiter": ""},
+    "10": {"file_name": "file10.json", "delimiter": ""}
 }
