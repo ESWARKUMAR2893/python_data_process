@@ -26,9 +26,11 @@ def read_database_config(file_name, number):
     """
     print(f"\nReading {file_name} file ..")
     config = load_json(file_name)
+    db_full = config[str(number)]
     db_type = config[str(number)]["type"]
+    print("DB FUll Data is ",db_full)
     print(f"\n Extracted Database type is {db_type} \n")
-    return db_type
+    return db_full
 
 
 def read_file_config(file_name, number):
@@ -80,8 +82,9 @@ def read_api_config(file_name, number):
 
 
 # Define utility functions for each conversion
-def file_to_db(source,target):
-    print(f"We are in a function file_to_db to Extract {source[0][0]} and convert to {target[0]} DB\n")
+def file_to_db(source, target, target_table):
+    # print("File_to_db",source,target)
+    print(f"We are in a function file_to_db to Extract {source[0][0]} and Save the {target_table} table to {target[0]['type']}  DB\n")
     print("Work in progress....")
 
 
@@ -96,16 +99,16 @@ def extract_csv(file_path, delimiter):
     return pd.read_csv(file_path, delimiter=delimiter)
 
 
-def file_to_output(source,target):
+def file_to_output(source, target):
     print(f"We are in a function file_to_output to Extract {source[0][0]} and convert to {target[0]} format")
     # print("^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-    #print(source)
+    # print(source)
     # print("Target",target[0])
     output_format = target[0]
     filename = source[0][0]
     delimiter = source[0][1]
-    print("filename is :",filename)
-    print("delimiter is :",delimiter)
+    print("filename is :", filename)
+    print("delimiter is :", delimiter)
     data = extract_csv(filename, delimiter)
     data_frame = transform_data(data)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -115,7 +118,7 @@ def file_to_output(source,target):
     elif output_format == 'txt':
         data_frame.to_csv(filename, index=False, sep=delimiter)
     elif output_format == 'json':
-        data_frame.to_json(filename, orient='records', lines=True)
+        data_frame.to_json(filename, orient='records', indent=4, lines=False)
     else:
         raise ValueError(f"Unsupported output format: {output_format}")
 
@@ -190,6 +193,10 @@ def main():
     parser.add_argument('file2', type=str, help='The second JSON configuration file')
     parser.add_argument('num2', type=int, help='The key number to access in the second JSON file')
 
+    # Adding optional table argument which will be required only if the target is DB
+    parser.add_argument('--target_table', type=str, help='Provide table to save the Data',
+                        required=False)
+
     args = parser.parse_args()
 
     source_main = process_file(args.file1, args.num1)
@@ -198,6 +205,12 @@ def main():
     print(f"\nBy the inputs you passed we need to convert source {source_main[-1]} to target {target_main[-1]} type \n")
 
     source, target = source_main[-1], target_main[-1]
+    target_table = None
+
+    if target == "DB":
+        if args.target_table is None:
+            parser.error("Please Provide Which table to insert using --table1 ... ")
+        target_table = args.target_table
 
     # Check the combination and call the appropriate function
     if source == target:
@@ -205,15 +218,15 @@ def main():
     else:
         if source == "FILE":
             if target == "DB":
-                file_to_db(source_main,target_main)
+                file_to_db(source_main, target_main, target_table)
             elif target == "OUTPUT":
-                file_to_output(source_main,target_main)
+                file_to_output(source_main, target_main)
             elif target == "API":
                 file_to_api()
         elif source == "DB":
             if target == "FILE":
                 print("This Combination is not allowed: From DB to FILE ")
-                #db_to_file()
+                # db_to_file()
             elif target == "OUTPUT":
                 db_to_output()
             elif target == "API":
