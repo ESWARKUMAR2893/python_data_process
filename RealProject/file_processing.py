@@ -188,24 +188,33 @@ def process_file(file, num):
 def main():
     parser = argparse.ArgumentParser(description='Read database type and file info from JSON config files.')
 
-    parser.add_argument('file1', type=str, help='The first JSON configuration file')
+    parser.add_argument('fileConfig1', type=str, help='The first JSON configuration file')
     parser.add_argument('num1', type=int, help='The key number to access in the first JSON file')
-    parser.add_argument('file2', type=str, help='The second JSON configuration file')
+    parser.add_argument('fileConfig2', type=str, help='The second JSON configuration file')
     parser.add_argument('num2', type=int, help='The key number to access in the second JSON file')
 
     # Adding optional table argument which will be required only if the target is DB
     parser.add_argument('--target_table', type=str, help='Provide table to save the Data',
                         required=False)
 
+    parser.add_argument('--query', type=str, help='Provide FileConfig with txt file as number to retrive and save to file with comma seperated number',
+                        required=False)
+
     args = parser.parse_args()
 
-    source_main = process_file(args.file1, args.num1)
-    target_main = process_file(args.file2, args.num2)
+    source_main = process_file(args.fileConfig1, args.num1)
+    target_main = process_file(args.fileConfig2, args.num2)
     print("Source:", source_main[-1], "Target:", target_main[-1])
     print(f"\nBy the inputs you passed we need to convert source {source_main[-1]} to target {target_main[-1]} type \n")
 
     source, target = source_main[-1], target_main[-1]
     target_table = None
+    query_txt = None
+    if source == "DB":
+        if args.query is None:
+            parser.error("Please Provide the FileConfig with txt file number which contains query to save.. using --query FileConfig.json,2 ")
+        query_txt = args.query
+        print("query_txt is ",query_txt)
 
     if target == "DB":
         if args.target_table is None:
