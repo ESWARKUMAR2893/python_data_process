@@ -8,10 +8,9 @@ This document provides a detailed explanation of the Utility Report Generator sy
     - This is the central component of the system, written in Python.
     - It acts like the conductor of an orchestra, orchestrating all the other components to generate reports.
     - This script handles:
-        - Pulling configurations for data sources, output formats, and scheduling.
+        - Pulling configurations for data sources, output formats, and .
         - Collecting data from various sources.
         - Generating reports based on the extracted data.
-        - Storing the generated reports in the target database.
 
 2. **Configs (File, Database, API, Output):**
     - This represents the configuration files or database entries containing critical information for the report generation process.
@@ -21,8 +20,7 @@ This document provides a detailed explanation of the Utility Report Generator sy
         - **Output Configurations:**
             - Defining the format and structure of the generated reports.
             - Specifying the target database for storing the reports.
-        - **Schedule Configurations:**
-            - Defining the timing and frequency for triggering the report generation process.
+
 
 3. **Schedule (Trigger):**
     - This refers to the automated mechanism that initiates the report generation process.
