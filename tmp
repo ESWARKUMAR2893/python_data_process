@@ -1,0 +1,1 @@
+df2['nname'] = df2.apply(lambda row: df1.loc[df1['pid'] == row['nid'], 'pname'].values[0] if row['nid'] in df1['pid'].values else row['nname'], axis=1)
