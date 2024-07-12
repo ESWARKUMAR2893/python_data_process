@@ -1,1 +1,20 @@
-df2['nname'] = df2.apply(lambda row: df1.loc[df1['pid'] == row['nid'], 'pname'].values[0] if row['nid'] in df1['pid'].values else row['nname'], axis=1)
+import pandas as pd
+
+# Step 1: Read the first Excel file (file1.xlsx)
+file1 = 'file1.xlsx'
+df1 = pd.read_excel(file1)
+
+# Step 2: Read the second Excel file (file2.xlsx)
+file2 = 'file2.xlsx'
+df2 = pd.read_excel(file2)
+
+# Step 3: Merge DataFrames on common id columns (1id and 2id)
+merged_df = pd.merge(df2, df1[['1id', '1mname']], left_on='2id', right_on='1id', how='left')
+
+# Step 4: Update 2name with 1mname where ids match
+df2.loc[merged_df['1mname'].notna(), '2name'] = merged_df['1mname']
+
+# Step 5: Save the updated DataFrame back to file2.xlsx
+df2.to_excel(file2, index=False)
+
+print('Update completed and saved to file2.xlsx.')
